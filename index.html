@@ -1,1 +1,40 @@
-Hello World
+<tbody>
+<tr class="firstRow">
+<td width="500pt"><center>
+<h1>Project 3: xv6 Threads</h1>
+<p><strong>Handed out Thursday, Feb. 23, 2016<br />Due Friday March 11, 2016 (8 pm)<br />Credit: modified from an assignment by Remzi Arpaci Dessau</strong></p>
+</center>
+<h2>Overview</h2>
+<strong>Warning: this is a significantly more challenging assignment than Project 2</strong>
+<p>In this project, you'll be adding real kernel threads to xv6. Sound like fun? Well, it should. Because you are on your way to becoming a real kernel hacker. And what could be more fun than that?</p>
+<p>Specifically, you'll do three things. First, you'll define a new system call to create a kernel thread, called&nbsp;<code>clone()</code>&nbsp;. Then, you'll use&nbsp;<code>clone()</code>&nbsp;to build a little thread library, with a&nbsp;<code>thread_create()</code>&nbsp;call and&nbsp;<code>lock_acquire()</code>&nbsp;and<code>lock_release()</code>&nbsp;functions. Finally, you'll show these things work by writing a test program in which multiple threads are created by the parent, and each insert items into a thread-safe linked list that you will write. That's it! And now, for some details.</p>
+<h2>Details</h2>
+<p>Your new syscall should look like this:&nbsp;<code>int clone(void *stack, int size)</code>&nbsp;. It does more or less what&nbsp;<code>fork()</code>&nbsp;does, except for some major difference:</p>
+<ul class=" list-paddingleft-2">
+<li>Address space: instead of making a new address space, it should use the parent's address space (which is thus shared between parent and child).</li>
+<li>File descriptors should not be duplicates of the the file descriptors of the parent -- they should use the same file descriptor. You might also notice a single pointer is passed to the call, and size; this is the location of the child's user stack, which must be allocated&nbsp;<strong>before</strong>&nbsp;the call to clone is made. Thus, inside&nbsp;<code>clone()</code>&nbsp;, you should make sure that when you return, you are running on this stack, instead of the stack of the parent.
+<p>&nbsp;</p>
+<p>As with&nbsp;<code>fork()</code>&nbsp;, the&nbsp;<code>clone()</code>&nbsp;call returns the pid of the child to the parent, and 0 to the newly-created child thread.</p>
+<p>There are also some differences in the exit call and wait calls. For exit, we typically close all the file descriptors that a process uses. However, since these are now shared across all threads, this is not a good idea. Similarly, a parent process uses wait to reap a child process (free up the rest of its resources such as the stack, and memory). These are also tricky because these are now shared among all the kernel threads of the same process. A good solution to this problem is to keep track of the number of threads that share an address space and only free resources when the last one exits (for file descriptors) or is reaped (for the memory). Note that the last thread to exit may not be the parent.</p>
+<p>Your thread library will be built on top of this, and just have a simple<code>thread_create(void *(*start_routine)(void*), void *arg)</code>&nbsp;routine. This routine should use&nbsp;<code>clone()</code>&nbsp;to create the child, and then call<code>start_routine()</code>&nbsp;with the argument&nbsp;<code>arg</code>. You have to prepare the arguments on the thread stack (for this you need to understand the C calling conventions; to help you, there is a link to a book that describes the calling conventions in detail below (programming from the ground up)). This is likely to be the most challenging component of the assignment.</p>
+<p>Your thread library should also simple spin lock. There should be a type<code>lock_t</code>&nbsp;that one uses to declare a lock, and two routines<code>lock_acquire(lock_t *)</code>&nbsp;and&nbsp;<code>lock_release(lock_t *)</code>&nbsp;, which acquire and release the lock. The spin lock should use x86 atomic exchange to built the spin lock (see the xv6 kernel for an example of something close to what you need to do). One last routine,&nbsp;<code>lock_init(lock_t *)</code>&nbsp;, is used to initialize the lock as need be.</p>
+<p>To test your code, you should build a simple program that uses<code>thread_create()</code>&nbsp;to create some number of threads. The threads will simulate a game of frisbee where each thread passes the frisbee (token) to the next. The location of the frisbee is updated in a critical region protected by a lock. Each thread spins to check the value of the lock. If it is its turn, then it prints a message, and releases the lock. If you implement this using a single lock, the performance will be bad (why?) Consider using a lock array (similar to Anderson's lock).</p>
+<p>The command line arguments for this program are thus:</p>
+<p>&nbsp;</p>
+<blockquote><code>prompt&gt; main numberOfthreads numberofpasses&nbsp;</code>where numberofpasses specifies how many passes of the frisbee to do before the simulation stops.</blockquote>
+<p>Have fun!</p>
+<h2>The Code</h2>
+<p>Download a fresh copy of xv6.</p>
+<p>Chapters 2 and 4 of the xv6 books are essential background for this project.</p>
+<p>You may also find this book useful:&nbsp;<a href="http://download.savannah.gnu.org/releases/pgubook/ProgrammingGroundUp-1-0-booksize.pdf">Programming from the Ground Up</a>&nbsp;. Particular attention should be paid to the first few chapters, including the calling convention (i.e., what's on the stack when you make a function call, and how it all is manipulated).</p>
+<h2>Handing It In</h2>
+<p>Your hand in should include, in addition to your code a writeup that describes the changes that you have done and how you tested your kernel.</p>
+<p>Khaled will be grading this project by&nbsp;<strong>interview.</strong>&nbsp;We expect you to understand all the implementation and be able to answer questions about it even if your implemented this part. You should be expect to be asked questions about your code (and related code) and be able to demo the example and any tests.</p>
+<p>The write-up should be short (a few pages at most) and concise. You should also describe how you&nbsp;<strong>tested</strong>&nbsp;your code, to convince us (and yourselves) that it works!</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+
+<p>&nbsp;</p>
