@@ -26,8 +26,7 @@ paginate: 2
 
 # system variables, do not change unless you knew what's it does.
 paginate_path: page/:num
-highlighter: pygments
-markdown: redcarpet
+highlighter: rouge
 redcarpet:
   extensions: ["tables"]
 
@@ -46,3 +45,5 @@ defaults:
 sass:
   sass_dir: _sass
   style: compressed
+  
+gems: [jekyll-paginate]
