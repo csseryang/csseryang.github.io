@@ -11,7 +11,7 @@
       <title>Welcome!</title>
       <!-- Bootstrap core CSS -->
       <link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
-      <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+      <link href="css/bootstrap.min.css" rel="stylesheet">
       <!-- Custom styles for this template -->
       <link href="https://getbootstrap.com/docs/3.3/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
       <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
@@ -25,11 +25,21 @@
    </head>
    <body>
       <div class="container">
-         <div class="page-header">
-            <h1>This will be a better website!</h1>
-         </div>
+         <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+            <a class="navbar-brand" href="#">Welcome!</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+               <div class="navbar-nav">
+                  <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                  <a class="nav-item nav-link " href="http://hyang027.com"> Articles </a>
+               </div>
+            </div>
+         </nav>
+         <hr>
          <div class = "row">
-            <div class = "col-md-4">
+            <div class = "col-md-6">
                <a href="http://imgur.com/3jjnYsn"><img src="http://i.imgur.com/3jjnYsn.jpg" title="source: imgur.com" style="width:230px;height:228px;"/></a>
             </div>
             <div class = "col-md-6">
@@ -48,76 +58,79 @@
          </div>
          <div>
             <strong>
-               Backend engineer, CybEye Inc  </strong>    
+            Backend engineer, CybEye Inc  </strong>    
             <div class="pull-right">   May 2017 - Present</br></div>
          </div>
-             <p>  
-               <ul>
-            <li>Develop RESTful APIs for live streaming IOS/Android APPs </li>
-            <li>Develop new server synchronization API with websocket protocol </li>
-             <li> Migrate existing backend APIs to Amazon API gateway/lambda </li>
-            <li> <strong>  Environment: </strong>     Startup experience, JavaEE, Servlet, MySQL, AWS, SVN, Tomcat, </li>
-               </ul>
-            </p>
-         
+         <p>  
+         <ul>
+            <li>Developed new server synchronization API with Websocket protocol</li>
+            <li>Debugged and maintained RESTful APIs for live streaming IOS/Android Apps </li>
+            <li> Migrate existing backend APIs to Amazon API gateway/lambda </li>
+            <li> Tuned up SQL database performance with over millions of records, replicated MySql with Master-Slave Pattern </li>
+            <li class="text-success"> <strong>  Environment: </strong>   Startup experience, JavaEE/Maven, Servlet/Spring, Tomcat, SVN, AWS EC2/RDS/Api Gateway/Lambda,  MySQL, Websocket, Javascript    </li>
+         </ul>
+         </p>
+         <br>
          <div class="page-header">
             <h3>Project Experience</h3>
          </div>
          <div>
             [<a href=".">paper</a>] <strong>
-            Live streaming study </strong>     
+            CDN research of live streaming </strong>     
             <div class="pull-right">   September 2015 - August  2016 </br></div>
          </div>
          <br>
          <div>
             <ul>
-               <li>  Research topic which aims at reducing latency for livestreaming e.g.Twitch/Youtubelive/FacebookLive   </li>
-               <li>  Implement a broadcasting prototype in Python with ffmpeg/vlc on Azure/Wowza media servers with over 30 Virtual machines. </li>
-                <li> <strong> Environment: </strong>     Wowza/living streaming/ research    </li>
+               <li>  Designed and implemented network flow algorithm for professor in live streaming research topics e.g Twitch/YouTube Live </li>
+               <li> Implemented a broadcasting prototype with ffmpeg/Wowza Media server on Microsoft Azure with over 30 VMs, achieving 10% less latency  </li>
+               <li class="text-success" > <strong> Environment: </strong>   Python, Microsoft Azure, convex optimization, vlc/ffmpeg/Wowza, Wireshark/tcpdump/tc    </li>
             </ul>
             <br>
          </div>
-        
          <div>
             [<a href=".">source code</a>] [<a href=".">demo</a>]  <strong>
             Java-Based  Online banking system  </strong>   
             <div class="pull-right">   March 2017 - June 2017 </br></div>
          </div>
-
-            <br>
-
-            <div>
+         <div>
             <p> 
-
             <ul>
                <li> Build an online banking system consisting of user front and admin portal parts.  <br>
                <li>Supports functionalities like account management, transactions record and appointment arrangements.<br>
-               <li> <strong> Environment: </strong>  Spring, Hibernate, Angular 2 ,Java 8, Thymeleaf <br>
+               <li class="text-success"> <strong> Environment: </strong>  Java8, Spring Boot/Bootstrap/Maven, Hibernate/Angular JS/Thymeleaf, MySQL <br>
             </ul>
             </p> 
          </div>
-
          <br>
-          <div>
+         <div>
             <h3> Others </h3>
-
             <ul>
-               <li>   [<a href="https://www.youtube.com/watch?v=M7S1sDhXUX4"> C#-Based Video Game: </a>] Developed with Unity3D in c#. A first person 3D maze game.  </li> 
-               <li>   [<a href="http://i.imgur.com/hu0gxd2.gifv"> C++ Data Process Tool for Bioengineering: </a>] A computational tool developed for a biogneering professor at UCR. Based on QT and matplotlib. </li> 
-               <li>   [<a href="https://drive.google.com/open?id=0B428rXBxUzFeeEhxT1VJV0R4eG8"> Java-baesd Router Malware Detection: </a>]  Use machine learning algorithms to analyze router system call traces for malware detection.  </li>  
+               <li>   [<a href="https://www.youtube.com/watch?v=M7S1sDhXUX4"> C#-Based Video Game: </a>] Developed with Unity3D in c#. A first person 3D maze game.  </li>
+               <li>   [<a href="http://i.imgur.com/hu0gxd2.gifv"> C++ Data Process Tool for Bioengineering: </a>] A computational tool developed for a biogneering professor at UCR. Based on QT and matplotlib. </li>
+               <li>   [<a href="https://drive.google.com/open?id=0B428rXBxUzFeeEhxT1VJV0R4eG8"> Java-baesd Router Malware Detection: </a>]  Use machine learning algorithms to analyze router system call traces for malware detection.  </li>
             </ul>
-          
          </div>
-
          <div class="page-header">
             <h3>Education Background</h3>
             <hr>
-                <div> UC Riverside   <div class="pull-right">   September 2015 - March  2017 </br> </div>
-               </div>
-               <br>
-               <div> Shenzhen University, China   <div class="pull-right">   September 2011- July  2015 </br> </div>
-               </div>
-          
+            <div>
+               UC Riverside   
+               <div class="float-right">   September 2015 - March  2017 </div>
+               <ul>
+                  <li>  GPA 3.6 / 4.0  </li>
+                  <li>   Reader/Grader of CS150 Automata and formal languages  </li>
+                  <li>   Reader/Grader of CS218 Design and Analysis of Algorithms   </li>
+               </ul>
+            </div>
+            <br>
+            <div>
+               Shenzhen University, China   
+               <div class="float-right">   September 2011- July  2015 </br> </div>
+               <ul>
+               <li>  GPA 3.8 / 4.0 </li>
+               <li> First Prize Scholarship (top 5%)</li>
+            </div>
          </div>
          <footer class="footer">
             <p>&copy; Hui Yang 2017. Powered by Bootstrap</p>
